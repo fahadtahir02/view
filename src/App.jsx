@@ -1,12 +1,17 @@
-import Header from './components/Header.jsx'
+import Header from './components/Header/Header.jsx';
 import CoreConcepts from './components/Core_concepts.jsx';
 import { CORE_CONCEPTS } from './data.js';
+import TabButton from "./components/Tab_button.jsx";
 
 
 
 
 
 function App() {
+    function clickHandler(selectedButton) {
+
+        return console.log(selectedButton);
+    };
     return (
         <div>
             <Header />
@@ -29,11 +34,21 @@ function App() {
                             description={CORE_CONCEPTS[2].description}
                             image={CORE_CONCEPTS[2].image}
                         />
-                        <CoreConcepts{...CORE_CONCEPTS[3]}/>
-                         {/* Literally same thing as above if we know we are going to use all of our K:Value pairs in from our data
+                        <CoreConcepts{...CORE_CONCEPTS[3]} />
+                        {/* Literally same thing as above if we know we are going to use all of our K:Value pairs in from our data
                          source then we can simply do {...CORE_CONCEPTS[3]}  */}
-                        
+
                     </ul>
+                </section>
+                <section id='examples'>
+                    <h2>Examples</h2>
+                    <menu>
+                        <TabButton onSelect={() => clickHandler('Components')}>Components</TabButton>
+                        <TabButton onSelect={() => clickHandler('JSX')}>JSX</TabButton>
+                        <TabButton onSelect={() => clickHandler('Props')}>Props</TabButton>
+                        <TabButton onSelect={() => clickHandler('State')}>State</TabButton>
+                    </menu>
+
                 </section>
             </main>
         </div>

@@ -1,5 +1,5 @@
-import header_img from '../assets/react-core-concepts.png';
-
+import header_img from '../../assets/react-core-concepts.png';
+import "./Header.css"
 
 const synonyms = ['Fundemental', 'Core', 'Multiple']
 
