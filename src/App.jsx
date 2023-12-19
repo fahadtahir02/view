@@ -2,15 +2,36 @@ import Header from './components/Header/Header.jsx';
 import CoreConcepts from './components/Core_concepts.jsx';
 import { CORE_CONCEPTS } from './data.js';
 import TabButton from "./components/Tab_button.jsx";
+import { EXAMPLES } from './data.js';
 
 
+import { useState } from 'react';
 
 
 
 function App() {
-    function clickHandler(selectedButton) {
+    const [selectedTopic, setSelectedTopic] = useState()
 
-        return console.log(selectedButton);
+    function clickHandler(selectedButton) {
+        return (
+            setSelectedTopic(selectedButton)
+        )
+
+        // return console.log(selectedButton);
+    };
+
+    let tableContent = <p>Select a Tab to Learn More!</p>
+
+    if (selectedTopic) {
+        tableContent = (<div id="tab-content">
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+                <code>
+                    {EXAMPLES[selectedTopic].code}
+                </code>
+            </pre>
+        </div>)
     };
     return (
         <div>
@@ -43,12 +64,12 @@ function App() {
                 <section id='examples'>
                     <h2>Examples</h2>
                     <menu>
-                        <TabButton onSelect={() => clickHandler('Components')}>Components</TabButton>
-                        <TabButton onSelect={() => clickHandler('JSX')}>JSX</TabButton>
-                        <TabButton onSelect={() => clickHandler('Props')}>Props</TabButton>
-                        <TabButton onSelect={() => clickHandler('State')}>State</TabButton>
+                        <TabButton onSelect={() => clickHandler('components')}>Components</TabButton>
+                        <TabButton onSelect={() => clickHandler('jsx')}>JSX</TabButton>
+                        <TabButton onSelect={() => clickHandler('props')}>Props</TabButton>
+                        <TabButton onSelect={() => clickHandler('state')}>State</TabButton>
                     </menu>
-
+                    {tableContent}
                 </section>
             </main>
         </div>
